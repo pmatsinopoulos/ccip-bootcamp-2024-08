@@ -16,10 +16,17 @@ const config: HardhatUserConfig = {
       accounts: [WALLET_ACCOUNT_PRIVATE_KEY],
       routerAddress: "0xD3b06cEbF099CE7DA4AcCf578aaebFDBd6e88a93",
       linkTokenAddress: "0xE4aB69C077896252FAFBD49EFD26B5D171A32410",
+      ccipChainSelector: "10344971235874465080",
+      ccipBnMContractAddress: "0x88A2d74F47a237a62e7A51cdDa67270CE381555e",
     } as CustomNetworkConfig,
-  },
-  etherscan: {
-    apiKey: ETHERSCAN_API_KEY,
+    ethereumSepolia: {
+      name: "Ethereum Sepolia",
+      url: `https://eth-sepolia.g.alchemy.com/v2/${ALCHEMY_API_KEY}`,
+      accounts: [WALLET_ACCOUNT_PRIVATE_KEY],
+      routerAddress: "0x0BF3dE8c5D3e8A2B34D2BEeB17ABfCeBaf363A59",
+      linkTokenAddress: "0x779877A7B0D9E8603169DdbD7836e478b4624789",
+      ccipChainSelector: "16015286601757825753",
+    } as CustomNetworkConfig,
   },
 };
 

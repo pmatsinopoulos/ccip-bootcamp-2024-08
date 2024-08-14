@@ -1,0 +1,11 @@
+encryption:
+
+```bash
+$ openssl enc -aes-256-cbc -pbkdf2 -salt -in ./day1.md -out ./day1.md.enc
+```
+
+decryption:
+
+```bash
+$ openssl enc -aes-256-cbc -d -pbkdf2 -in day1.md.enc -out day1.md
+```

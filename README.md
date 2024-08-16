@@ -107,3 +107,9 @@ I have deployed the contract `XNFT` to `Ethereum Sepolia` by running:
 ```bash
 $ npx hardhat --network ethereumSepolia run scripts/deployXNFT.ts
 ```
+
+I have deployed the contract `XNFG` to `Arbitrum Sepolia` by running:
+
+```bash
+$ npx hardhat --network arbitrumSepolia run scripts/deployXNFT.ts
+```

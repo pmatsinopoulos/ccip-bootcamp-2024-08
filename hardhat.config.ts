@@ -27,6 +27,15 @@ const config: HardhatUserConfig = {
       linkTokenAddress: "0x779877A7B0D9E8603169DdbD7836e478b4624789",
       ccipChainSelector: "16015286601757825753",
     } as CustomNetworkConfig,
+    arbitrumSepolia: {
+      name: "Arbitrum Sepolia",
+      url: `https://arb-sepolia.g.alchemy.com/v2/${ALCHEMY_API_KEY}`,
+      accounts: [WALLET_ACCOUNT_PRIVATE_KEY],
+      routerAddress: "0x2a9c5afb0d0e4bab2bcdae109ec4b0c4be15a165",
+      linkTokenAddress: "0xb1D4538B4571d411F07960EF2838Ce337FE1E80E",
+      ccipChainSelector: "3478487238524512106",
+      ccipBnMContractAddress: "",
+    } as CustomNetworkConfig,
   },
 };
 

@@ -113,3 +113,23 @@ I have deployed the contract `XNFG` to `Arbitrum Sepolia` by running:
 ```bash
 $ npx hardhat --network arbitrumSepolia run scripts/deployXNFT.ts
 ```
+
+I have created the contract [contracts/EncodeExtraArgs.sol](./contracts/EncodeExtraArgs.sol),
+with content from the page of the exercise. It will help me encode extra args, as follows:
+
+I compile the contract:
+
+```bash
+$ npx hardhat compile
+```
+
+
+And then I run the following script to get encoded extra args script:
+
+```bash
+$ ARG_GAS_LIMIT=200000 npx hardhat run scripts/encodeExtraArgs.ts
+```
+
+which gives me a string like:
+
+`0x97a657c90000000000000000000000000000000000000000000000000000000000030d40`

@@ -8,7 +8,7 @@ const writeContractAddressToFile = (
 ) => {
   const filePath = path.join(
     __dirname,
-    `../scripts/${networkName}_${contractName}.json`
+    `../scripts/${networkName || "localhost"}_${contractName}.json`
   );
   const stringToWrite = JSON.stringify({
     contractAddress,

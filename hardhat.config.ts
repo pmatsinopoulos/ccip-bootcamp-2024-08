@@ -24,6 +24,10 @@ const config: HardhatUserConfig = {
     },
   },
   networks: {
+    localhost: {
+      name: "Localhost",
+      url: `http://localhost:8545`,
+    } as CustomNetworkConfig,
     baseSepolia: {
       name: "Base Sepolia",
       url: `https://base-sepolia.g.alchemy.com/v2/${ALCHEMY_API_KEY}`,

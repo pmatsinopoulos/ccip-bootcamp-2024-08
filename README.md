@@ -108,7 +108,7 @@ I have deployed the contract `XNFT` to `Ethereum Sepolia` by running:
 $ npx hardhat --network ethereumSepolia run scripts/deployXNFT.ts
 ```
 
-I have deployed the contract `XNFG` to `Arbitrum Sepolia` by running:
+I have deployed the contract `XNFT` to `Arbitrum Sepolia` by running:
 
 ```bash
 $ npx hardhat --network arbitrumSepolia run scripts/deployXNFT.ts
@@ -133,3 +133,11 @@ $ ARG_GAS_LIMIT=200000 npx hardhat run scripts/encodeExtraArgs.ts
 which gives me a string like:
 
 `0x97a657c90000000000000000000000000000000000000000000000000000000000030d40`
+
+Then I call `enableChain()` on the source network `Ethereum Sepolia` to enable
+the destination chain `Arbitrum Sepolia` and the destination contract `XNFT`.
+
+```bash
+$ ARG_CCIP_EXTRA_ARGS='0x97a657c90000000000000000000000000000000000000000000000000000000000030d40' npx hardhat --network ethereumSepolia run scripts/enableArbitrumSepoliaOnEthereum.ts
+```
+This returned the transaction: "0xfcb0fd1b8c0288ae81225a1db2424a9cfdd72fe53292ddc1a635c66232d5f4ac"

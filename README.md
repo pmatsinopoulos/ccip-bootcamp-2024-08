@@ -97,3 +97,13 @@ Then, I call the `retryFailedMessage()` to recover the tokens. I pass the messag
 address of the `Ethereum Sepolia` smart contract.
 
 I got back the transaction hash: `0x1bc59379d46c810fce54fc801de5cc706bca6ea7e29659240962d4c4c9bf9a46`
+
+# Day 2
+
+## Exercise 2: Build Your First Cross-Chain NFT
+
+I have deployed the contract `XNFT` to `Ethereum Sepolia` by running:
+
+```bash
+$ npx hardhat --network ethereumSepolia run scripts/deployXNFT.ts
+```

@@ -138,6 +138,15 @@ Then I call `enableChain()` on the source network `Ethereum Sepolia` to enable
 the destination chain `Arbitrum Sepolia` and the destination contract `XNFT`.
 
 ```bash
-$ ARG_CCIP_EXTRA_ARGS='0x97a657c90000000000000000000000000000000000000000000000000000000000030d40' npx hardhat --network ethereumSepolia run scripts/enableArbitrumSepoliaOnEthereum.ts
+$ ARG_CCIP_EXTRA_ARGS='0x97a657c90000000000000000000000000000000000000000000000000000000000030d40' npx hardhat --network ethereumSepolia run scripts/enableArbitrumSepoliaOnEthereumSepolia.ts
 ```
-This returned the transaction: "0xfcb0fd1b8c0288ae81225a1db2424a9cfdd72fe53292ddc1a635c66232d5f4ac"
+This returned the transaction: `0xfcb0fd1b8c0288ae81225a1db2424a9cfdd72fe53292ddc1a635c66232d5f4ac` on `Ethereum Sepolia`.
+
+Then I need to call "enableChain()" on Arbitrum Sepolia, to enable Ethereum Sepolia and XNFT on Ethereum Sepolia.
+This is the reverse enablement to the previous one.
+
+```bash
+$ ARG_CCIP_EXTRA_ARGS='0x97a657c90000000000000000000000000000000000000000000000000000000000030d40' npx hardhat --network arbitrumSepolia run scripts/enableEthereumSepoliaOnArbitrumSepolia.ts
+```
+
+This returned the transaction `0x506bbff810709eedb696a521849da71fbfd3b5a4e57a02577b46eab6b5ea0c1d` on Arbitrum Sepolia.

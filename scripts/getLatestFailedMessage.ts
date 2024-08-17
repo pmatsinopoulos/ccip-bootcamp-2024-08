@@ -27,9 +27,6 @@ async function main() {
 
   console.debug("contract address", contractAddress);
 
-  // Create a wallet instance using private key and provider
-  const provider = new ethers.JsonRpcProvider(hre.network.config.url);
-
   const ContractFactory: ProgrammableDefensiveTokenTransfers__factory =
     await ethers.getContractFactory(CONTRACT_NAME);
   const contract: ProgrammableDefensiveTokenTransfers = ContractFactory.attach(

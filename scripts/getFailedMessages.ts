@@ -25,8 +25,6 @@ async function main() {
     contractAddress
   );
 
-  const provider = new ethers.JsonRpcProvider(hre.network.config.url);
-
   const ContractFactory = await ethers.getContractFactory(CONTRACT_NAME);
 
   const contract: ProgrammableDefensiveTokenTransfers = ContractFactory.attach(

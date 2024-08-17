@@ -157,3 +157,12 @@ I will fund the `XNFT` on `Arbitrum Sepolia` with `3` `LINK`. I will use my Meta
 Again, I need my wallet to have `LINK` on `Arbitrum Sepolia` in order to be able to _send_ to the `XNFT` contract.
 OR I can use this the LINK token page on the `Arbitrum Sepolia Explorer` by going to the page, signing with my Metamask Wallet
 and using the `transfer()` function.
+
+Then we need to mint `XNFT`in source network `Arbitrum Sepolia`. I run the script:
+
+```bash
+$ npx hardhat --network arbitrumSepolia run scripts/mintXNFT.ts
+```
+
+This runs the `XNFT#mint()` function which mints a new XNFT token and sets its owner to be the signing wallet, i.e. my
+Wallet address. The transaction hash is `0x0c2d075c6885c0859791bc2c65d4b4440db48701b9def39f05cf359b0fd1eb7d`.

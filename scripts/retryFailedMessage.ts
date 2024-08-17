@@ -7,6 +7,7 @@ import {
   ProgrammableDefensiveTokenTransfers,
   ProgrammableDefensiveTokenTransfers__factory,
 } from "../typechain-types";
+import getSigningWalletForCurrentNetwork from "../utils/getSigningWalletForCurrentNetwork";
 
 const CONTRACT_NAME = "ProgrammableDefensiveTokenTransfers";
 const WALLET_ACCOUNT_PRIVATE_KEY = vars.get("WALLET_ACCOUNT_PRIVATE_KEY");
@@ -29,11 +30,10 @@ async function main() {
   console.debug("contract address", contractAddress);
 
   // Create a wallet instance using private key and provider
-  const provider = new ethers.JsonRpcProvider(hre.network.config.url);
-  const wallet = new ethers.Wallet(WALLET_ACCOUNT_PRIVATE_KEY, provider);
+  const signingWallet = getSigningWalletForCurrentNetwork();
 
   const ContractFactory: ProgrammableDefensiveTokenTransfers__factory =
-    await ethers.getContractFactory(CONTRACT_NAME, wallet);
+    await ethers.getContractFactory(CONTRACT_NAME, signingWallet);
   const contract: ProgrammableDefensiveTokenTransfers = ContractFactory.attach(
     contractAddress
   ) as ProgrammableDefensiveTokenTransfers;

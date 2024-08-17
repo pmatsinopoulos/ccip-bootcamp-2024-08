@@ -5,6 +5,7 @@ import hre from "hardhat";
 import { vars } from "hardhat/config";
 import readContractAddress from "../utils/readContractAddress";
 import { XNFT } from "../typechain-types";
+import getSigningWalletForCurrentNetwork from "../utils/getSigningWalletForCurrentNetwork";
 
 const CONTRACT_NAME = "XNFT";
 const WALLET_ACCOUNT_PRIVATE_KEY = vars.get("WALLET_ACCOUNT_PRIVATE_KEY");
@@ -16,8 +17,7 @@ async function main() {
   const arbitrumSepolia = hre.config.networks
     .arbitrumSepolia as CustomNetworkConfig;
 
-  const provider = new ethers.JsonRpcProvider(ethereumSepolia.url);
-  const wallet = new ethers.Wallet(WALLET_ACCOUNT_PRIVATE_KEY, provider);
+  const signingWallet = getSigningWalletForCurrentNetwork();
 
   const arbitrumSepoliaChainSelector = arbitrumSepolia.ccipChainSelector;
   const xNftAddressArbitrumSepolia = readContractAddress(
@@ -32,7 +32,7 @@ async function main() {
 
   const ContractFactory = await ethers.getContractFactory(
     CONTRACT_NAME,
-    wallet
+    signingWallet
   );
 
   const contract = ContractFactory.attach(contractAddress) as XNFT;

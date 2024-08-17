@@ -166,3 +166,24 @@ $ npx hardhat --network arbitrumSepolia run scripts/mintXNFT.ts
 
 This runs the `XNFT#mint()` function which mints a new XNFT token and sets its owner to be the signing wallet, i.e. my
 Wallet address. The transaction hash is `0x0c2d075c6885c0859791bc2c65d4b4440db48701b9def39f05cf359b0fd1eb7d`.
+
+Finally, I have to do the cross transfer of the minted XNFT from Arbitrum Sepolia to Ethereum Sepolia.
+
+This is done with the script:
+
+```bash
+$ npx hardhat --network arbitrumSepolia run scripts/crossChainTransferXNFTToEthereumSepolia.ts
+```
+
+This is calling the `XNFT#crossChainTransferFrom()`.
+
+The question here is how do I get the `tokenId` of the minted `XNFT` on `Arbitrum Sepolia`. I need to have it in order
+to give it as `tokenId` parameter to the `crossChainTransferFrom()`. The `XNFT#mint()` we called earlier does not return
+the `tokenId`. Is there another way to get it? Yes, I can get it from the details of the transaction if I go to the
+transaction viewer in Arbitrum Sepolia explorer: [https://sepolia.arbiscan.io/tx/0x0c2d075c6885c0859791bc2c65d4b4440db48701b9def39f05cf359b0fd1eb7d](https://sepolia.arbiscan.io/tx/0x0c2d075c6885c0859791bc2c65d4b4440db48701b9def39f05cf359b0fd1eb7d). There I can see this:
+
+![mint Transaction Details gives me the tokenId minted](./images/mintXNFTtokenId.jpg)
+
+This is telling me that the `tokenId` minted is `0`.
+
+Also, I need to have enough `LINK` in my wallet.

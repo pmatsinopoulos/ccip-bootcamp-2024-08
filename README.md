@@ -150,3 +150,10 @@ $ ARG_CCIP_EXTRA_ARGS='0x97a657c900000000000000000000000000000000000000000000000
 ```
 
 This returned the transaction `0x506bbff810709eedb696a521849da71fbfd3b5a4e57a02577b46eab6b5ea0c1d` on Arbitrum Sepolia.
+
+Then I need to make sure that the `XNFT` smart contract on `Arbitrum Sepolia` has some `LINK` to cover for CCIP fees.
+So, the source contract needs to have enough `LINK` fee to pay for the CCIP. Not the sender wallet.
+I will fund the `XNFT` on `Arbitrum Sepolia` with `3` `LINK`. I will use my MetaMask wallet to do this.
+Again, I need my wallet to have `LINK` on `Arbitrum Sepolia` in order to be able to _send_ to the `XNFT` contract.
+OR I can use this the LINK token page on the `Arbitrum Sepolia Explorer` by going to the page, signing with my Metamask Wallet
+and using the `transfer()` function.

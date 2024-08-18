@@ -1,10 +1,8 @@
 import { ethers, network } from "hardhat";
 import { CustomNetworkConfig } from "../types/CustomNetworkConfig";
-import path from "path";
-import fs from "fs/promises";
 import writeContractAddressToFile from "../utils/writeContractAddressToFile";
 
-const CONTRACT_NAME = "ProgrammableDefensiveTokenTransfers";
+const CONTRACT_NAME = "EncodeExtraArgs";
 
 async function main() {
   console.log(`Deploying contract ${CONTRACT_NAME}`);
@@ -12,10 +10,7 @@ async function main() {
   const ContractFactory = await ethers.getContractFactory(CONTRACT_NAME);
   const networkConfig = network.config as CustomNetworkConfig;
 
-  const contract = await ContractFactory.deploy(
-    networkConfig.routerAddress,
-    networkConfig.linkTokenAddress
-  );
+  const contract = await ContractFactory.deploy();
 
   await contract.waitForDeployment();
 
@@ -30,6 +25,24 @@ async function main() {
     CONTRACT_NAME,
     contractAddress
   );
+
+  // Get the arguments from the command line
+  const argGasLimit = process.env.ARG_GAS_LIMIT || "";
+
+  const gasLimit = BigInt(argGasLimit);
+
+  console.debug("Gas limit", gasLimit);
+
+  // encode
+
+  const encodedData = await contract.encode(gasLimit);
+
+  console.debug("Encoded data", encodedData);
+
+  // double check that we can decode back
+  const decodedGasLimit = await contract.decode(encodedData);
+
+  console.debug("Decoded gas limit", decodedGasLimit);
 }
 
 main()

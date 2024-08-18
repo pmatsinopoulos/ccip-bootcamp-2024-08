@@ -4,7 +4,7 @@ import path from "path";
 import fs from "fs/promises";
 import writeContractAddressToFile from "../utils/writeContractAddressToFile";
 
-const CONTRACT_NAME = "ProgrammableDefensiveTokenTransfers";
+const CONTRACT_NAME = "XNFT";
 
 async function main() {
   console.log(`Deploying contract ${CONTRACT_NAME}`);
@@ -14,7 +14,8 @@ async function main() {
 
   const contract = await ContractFactory.deploy(
     networkConfig.routerAddress,
-    networkConfig.linkTokenAddress
+    networkConfig.linkTokenAddress,
+    networkConfig.ccipChainSelector
   );
 
   await contract.waitForDeployment();

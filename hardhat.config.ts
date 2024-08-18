@@ -8,8 +8,26 @@ const WALLET_ACCOUNT_PRIVATE_KEY = vars.get("WALLET_ACCOUNT_PRIVATE_KEY");
 const ETHERSCAN_API_KEY = vars.get("ETHERSCAN_API_KEY");
 
 const config: HardhatUserConfig = {
-  solidity: "0.8.20",
+  solidity: {
+    version: "0.8.26",
+    settings: {
+      evmVersion: "shanghai",
+      viaIR: true,
+      optimizer: {
+        enabled: true,
+        details: {
+          yulDetails: {
+            optimizerSteps: "u",
+          },
+        },
+      },
+    },
+  },
   networks: {
+    localhost: {
+      name: "Localhost",
+      url: `http://localhost:8545`,
+    } as CustomNetworkConfig,
     baseSepolia: {
       name: "Base Sepolia",
       url: `https://base-sepolia.g.alchemy.com/v2/${ALCHEMY_API_KEY}`,
@@ -27,6 +45,12 @@ const config: HardhatUserConfig = {
       linkTokenAddress: "0x779877A7B0D9E8603169DdbD7836e478b4624789",
       ccipChainSelector: "16015286601757825753",
     } as CustomNetworkConfig,
+    ethereumSepoliaLocalFork: {
+      name: "Ethereum Sepolia Local Fork",
+      url: "http://127.0.0.1:8546",
+      accounts: [WALLET_ACCOUNT_PRIVATE_KEY],
+      ccipChainSelector: "16015286601757825753",
+    } as CustomNetworkConfig,
     arbitrumSepolia: {
       name: "Arbitrum Sepolia",
       url: `https://arb-sepolia.g.alchemy.com/v2/${ALCHEMY_API_KEY}`,
@@ -35,6 +59,12 @@ const config: HardhatUserConfig = {
       linkTokenAddress: "0xb1D4538B4571d411F07960EF2838Ce337FE1E80E",
       ccipChainSelector: "3478487238524512106",
       ccipBnMContractAddress: "",
+    } as CustomNetworkConfig,
+    arbitrumSepoliaLocalFork: {
+      name: "Arbitrum Sepolia Local Fork",
+      url: "http://127.0.0.1:8545",
+      accounts: [WALLET_ACCOUNT_PRIVATE_KEY],
+      chainId: 421614,
     } as CustomNetworkConfig,
   },
 };

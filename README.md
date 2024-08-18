@@ -123,7 +123,6 @@ I compile the contract:
 $ npx hardhat compile
 ```
 
-
 And then I run the following script to get encoded extra args script:
 
 ```bash
@@ -134,8 +133,8 @@ which gives me a string like:
 
 `0x97a657c90000000000000000000000000000000000000000000000000000000000030d40`
 
-Then I call `enableChain()` on the source network `Ethereum Sepolia` to enable
-the destination chain `Arbitrum Sepolia` and the destination contract `XNFT`.
+Then I call `enableChain()` on the destination network `Ethereum Sepolia` to enable
+the source chain `Arbitrum Sepolia` and the source contract `XNFT`.
 
 ```bash
 $ ARG_CCIP_EXTRA_ARGS='0x97a657c90000000000000000000000000000000000000000000000000000000000030d40' npx hardhat --network ethereumSepolia run scripts/enableArbitrumSepoliaOnEthereumSepolia.ts
@@ -155,7 +154,7 @@ Then I need to make sure that the `XNFT` smart contract on `Arbitrum Sepolia` ha
 So, the source contract needs to have enough `LINK` fee to pay for the CCIP. Not the sender wallet.
 I will fund the `XNFT` on `Arbitrum Sepolia` with `3` `LINK`. I will use my MetaMask wallet to do this.
 Again, I need my wallet to have `LINK` on `Arbitrum Sepolia` in order to be able to _send_ to the `XNFT` contract.
-OR I can use this the LINK token page on the `Arbitrum Sepolia Explorer` by going to the page, signing with my Metamask Wallet
+OR I can use the LINK token page on the `Arbitrum Sepolia Explorer` by going to the page, signing with my Metamask Wallet
 and using the `transfer()` function.
 
 Then we need to mint `XNFT`in source network `Arbitrum Sepolia`. I run the script:
@@ -187,3 +186,29 @@ transaction viewer in Arbitrum Sepolia explorer: [https://sepolia.arbiscan.io/tx
 This is telling me that the `tokenId` minted is `0`.
 
 Also, I need to have enough `LINK` in my wallet.
+
+# Day 3
+
+## Exercise 3: Testing cross-chain contracts using Chainlink Local
+
+I use the forked mode.
+
+I used two hardhat configurations. One to fork source network `Arbitrum Sepolia` another one to fork destination network
+`Ethereum Sepolia`.
+
+Then, in two different terminals, I start the local forks:
+
+```bash
+$ npx hardhat --config hardhat.config.arbitrum-sepolia-fork.ts --port 8545
+Started HTTP and WebSocket JSON-RPC server at http://127.0.0.1:8545/
+...
+```
+
+```bash
+$ npx hardhat --config hardhat.config.ethereum-sepolia-fork.ts --port 8546
+Started HTTP and WebSocket JSON-RPC server at http://127.0.0.1:8546/
+...
+```
+
+These forks they already have deployed contracts and enablement is already as expected, because
+I fork after the work I have done on these networks for the Exercise 2.

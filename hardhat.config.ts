@@ -1,11 +1,14 @@
-import { HardhatUserConfig, vars } from "hardhat/config";
+import * as envEnc from "@chainlink/env-enc";
+import { HardhatUserConfig } from "hardhat/config";
 import "@nomicfoundation/hardhat-toolbox";
 import { NetworkUserConfig } from "hardhat/types";
 import { CustomNetworkConfig } from "./types/CustomNetworkConfig";
 
-const ALCHEMY_API_KEY = vars.get("ALCHEMY_API_KEY");
-const WALLET_ACCOUNT_PRIVATE_KEY = vars.get("WALLET_ACCOUNT_PRIVATE_KEY");
-const ETHERSCAN_API_KEY = vars.get("ETHERSCAN_API_KEY");
+envEnc.config();
+
+const ALCHEMY_API_KEY = process.env.HARDHAT_VAR_ALCHEMY_API_KEY || "";
+const WALLET_ACCOUNT_PRIVATE_KEY =
+  process.env.HARDHAT_VAR_WALLET_ACCOUNT_PRIVATE_KEY || "";
 
 const config: HardhatUserConfig = {
   solidity: {
